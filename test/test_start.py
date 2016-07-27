@@ -1,12 +1,41 @@
+
+# coding=utf-8
+"""docker-pi-hole feature tests."""
+
 import pytest
+from pytest_bdd import (
+    given,
+    scenarios,
+    then,
+    when,
+    parsers,
+)
 
-def test_ServerIP_missing_env_triggers_error(Command):
-    start = Command.run('/start.sh')
-    error_msg = "ERROR: To function correctly you must pass an environment variables of 'ServerIP' into the docker container"
-    assert start.rc == 1
-    assert error_msg in start.stdout
+scenarios('.')
 
-@pytest.mark.docker_args('-e ServerIP="192.168.1.2"')
-@pytest.mark.docker_cmd('/start.sh')
-def test_ServerIP_allows_normal_startup(Command):
-    assert Command.run('pgrep -f /start.sh | wc') != 0
+@given('docker <images>')
+def docker_images(images):
+    """docker <images>."""
+
+
+@given(parsers.parse('{env_name} environment is provided'))
+def an_environment_is_provided(env_name):
+    """an environment is provided."""
+
+
+@when('I run the docker image')
+def i_run_the_docker_image():
+    """I run the docker image."""
+
+
+@then(parsers.parse('the container prints: {message}'))
+def the_container_errors_saying(message):
+    """the container prints"""
+
+@then(parsers.parse('the container started {process}'))
+def the_container_errors_saying(process):
+    """the container started process"""
+
+@then('the container exits')
+def the_container_exits():
+    """the container exits."""
