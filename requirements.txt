@@ -2,4 +2,5 @@ docker-compose
 pytest
 pytest-xdist
 pytest-cov
+pytest-bdd
 testinfra

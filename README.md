@@ -1,8 +1,8 @@
 A [Docker](https://www.docker.com/what-docker) project to make lightweight x86 continers with [pi-hole](https://pi-hole.net) functionality.  Why?  Maybe you don't have a Raspberry Pi lying around but you do have a Docker server.
 
-[![Build Status](https://travis-ci.org/diginc/docker-pi-hole.svg?branch=master)](https://travis-ci.org/diginc/docker-pi-hole)
+[![Build Status](https://travis-ci.org/diginc/docker-pi-hole.svg?branch=master)](https://travis-ci.org/diginc/docker-pi-hole) [![Build Status](https://travis-ci.org/diginc/docker-pi-hole.svg?branch=dev)](https://travis-ci.org/diginc/docker-pi-hole)
 
-**April 25, 2016 Update**: the 'piholeIP' env var has been replaced by 'ServerIP' env var, update your docker run/docker-compose configs accordingly please.
+[![Docker Pulls](https://img.shields.io/docker/pulls/diginc/pi-hole.svg?maxAge=2592000?style=plastic)]() [![Docker Stars](https://img.shields.io/docker/stars/diginc/pi-hole.svg?maxAge=2592000)]()
 
 ## Running Pi-Hole Docker
 
