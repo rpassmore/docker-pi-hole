@@ -1,0 +1,11 @@
+local_resinos:
+  app-name: pi-hole
+  build-triggers:
+    - Dockerfile: 958e16e3aece929b2dee1917d1303a042e52cb01daa37186c2ba8114b05d40dc
+  environment:
+    - ServerIP=192.168.1.83
+port: '80, 53/udp, 53/tcp'
+destination: /usr/src/app
+ignore:
+  - .git
+  - node_modules/

@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM resin/raspberrypi3-alpine
 MAINTAINER adam@diginc.us <adam@diginc.us>
 
 ENV IMAGE alpine
@@ -10,8 +10,10 @@ ENV setupVars /etc/pihole/setupVars.conf
 ENV PIHOLE_INSTALL /tmp/ph_install.sh
 
 ENV TINI_VERSION v0.13.0
-ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-static /tini
-ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-static.asc /tini.asc
+#ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-static /tini
+#ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-static.asc /tini.asc
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-static-armhf /tini    
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-static-armhf.asc /tini.asc
 
 # Tini and package requirements
 RUN apk add --update 'gnupg<2.1.17-r0' && \
@@ -53,11 +55,12 @@ COPY ./start.sh /
 COPY ./bash_functions.sh /
 
 # IPV6 disable flag for networks/devices that do not support it
-ENV IPv6 True
+ENV IPv6 False
 
+EXPOSE 53 53/tcp
 EXPOSE 53 53/udp
 EXPOSE 80
 
-SHELL ["/bin/bash", "-c"]
+#SHELL ["/bin/bash", "-c"]
 ENTRYPOINT ["/tini", "--"]
 CMD [ "/start.sh" ]

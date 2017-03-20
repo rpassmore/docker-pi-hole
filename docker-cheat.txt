@@ -1,0 +1,18 @@
+#Create the container from the image and starts it
+docker run -d -p 9001:9000 -v /var/run/docker.sock:/var/run/docker.sock
+
+#Start a container called Portainer
+docker start Portainer
+
+http://resin.local:9001
+
+
+
+#start pi-hole from cmd line in docker host
+systemctl stop dnsmasq
+docker run -d -p 9000:9000 -p 53:53/tcp -p 53:53/udp -p 80:80 -e ServerIP=192.168.1.83 pi-hole
+
+
+
+8.8.4.4
+208.67.222.222
